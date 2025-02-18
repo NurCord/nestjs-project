@@ -8,13 +8,9 @@ import {
   Param,
   Post,
   Put,
-  Query,
-  // ParseIntPipe,
+  ParseIntPipe,
 } from '@nestjs/common';
-
-import { ParseIntPipe } from '../../common/parse-int.pipe';
 import { CreateProductDto, UpdateProductDto } from '../dtos/products.dtos';
-
 import { ProductsService } from './../services/products.service';
 
 @Controller('products')
@@ -26,15 +22,10 @@ export class ProductsController {
     return this.productsService.findAll();
   }
 
-  @Get('filter')
-  getProductFilter() {
-    return `yo soy un filter`;
-  }
-
-  @Get(':productId')
+  @Get(':id')
   @HttpCode(HttpStatus.ACCEPTED)
-  getOne(@Param('productId', ParseIntPipe) productId: number) {
-    return this.productsService.findOne(productId);
+  getOne(@Param('id', ParseIntPipe) id: number) {
+    return this.productsService.findOne(id);
   }
 
   @Post()

@@ -52,7 +52,7 @@ export class CustomerService {
     );
     if (customerIndex === -1)
       throw new NotFoundException(`Customer #${id} not found`);
-    this.customers.slice(customerIndex, 1);
+    this.customers.splice(customerIndex, 1);
     return;
   }
 }
