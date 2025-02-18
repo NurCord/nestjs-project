@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { ParseIntPipe } from 'src/common/parse-int.pipe';
+import { CreateUserDto, UpdateUserDto } from '../dtos/users.dtos';
 
 @Controller('users')
 export class UserController {
@@ -28,12 +29,15 @@ export class UserController {
   }
 
   @Post()
-  createUser(@Body() payload: any) {
+  createUser(@Body() payload: CreateUserDto) {
     return this.usersService.create(payload);
   }
 
   @Put(':id')
-  updateUser(@Param('id', ParseIntPipe) id: number, @Body() payload: any) {
+  updateUser(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() payload: UpdateUserDto,
+  ) {
     return this.usersService.update(id, payload);
   }
 
