@@ -12,12 +12,16 @@ import {
 } from '@nestjs/common';
 import { CreateProductDto, UpdateProductDto } from '../dtos/products.dtos';
 import { ProductsService } from './../services/products.service';
+import { ApiOperation } from '@nestjs/swagger';
 
+// Para cambiar el nombre del agrupador
+//@ApiTags('Products or other name')
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
+  @ApiOperation({ summary: 'List of products' })
   getProducts() {
     return this.productsService.findAll();
   }
